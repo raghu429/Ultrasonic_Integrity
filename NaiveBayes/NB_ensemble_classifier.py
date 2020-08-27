@@ -79,11 +79,11 @@ def get_weights(echo_distance):
     #classify the weights based on distance
     if(echo_distance <= 25):
         wts = [4,2,1,1]
-    elif(echo_distance > 25 &  echo_distance <= 50):
+    elif(echo_distance > 25 and  echo_distance <= 50):
         wts = [2,4,1,1]
-    elif(echo_distance > 50 & echo_distance <= 75):
+    elif(echo_distance > 50 and echo_distance <= 75):
         wts = [1,1,4,2]
-    elif(echo_distance > 75 & echo_distance <= 100):
+    elif(echo_distance > 75 and echo_distance <= 100):
         wts = [1,1,2,4]
     else:
         wts = [2,2,2,2]
