@@ -76,6 +76,7 @@ def fit_classifier(input_file, FtVec_length, rndm_state, train_per):
     return(model, X_test, y_test)
 
 def get_weights(echo_distance):
+    print('echo distance', echo_distance)
     #classify the weights based on distance
     if(echo_distance <= 25):
         wts = [4,2,1,1]
@@ -87,6 +88,18 @@ def get_weights(echo_distance):
         wts = [1,1,2,4]
     else:
         wts = [2,2,2,2]
+
+    # if(echo_distance <= 35):
+    #     wts = [4,1,1]
+    # elif(echo_distance > 35 and  echo_distance <= 70):
+    #     wts = [1,4,1]
+    # elif(echo_distance > 70 and echo_distance <= 100):
+    #     wts = [1,1,4]
+    # else:
+    #     wts = [2,2,2]
+
+
+    print('selected weights', wts)
     return (wts)
 
 if __name__ == "__main__":
@@ -134,6 +147,11 @@ if __name__ == "__main__":
 
     #define ensemble mod
     model_ensemble = VotingClassifier(estimators=[('m1', model_25), ('m2', model_50), ('m3', model_75), ('m4', model_100)],voting='soft', weights= get_weights(distance))
+
+    # model_ensemble = VotingClassifier(estimators=[('m1', model_25), ('m2', model_50), ('m3', model_100)],voting='soft', weights= get_weights(distance))
+
+    X_test =  x_test_50
+    y_test = y_test_50
 
     # gnb = MultinomialNB()
     
